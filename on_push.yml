@@ -1,0 +1,23 @@
+name: On Push Run
+
+on: push
+
+env:
+  DEVOPS_DIR: RSA
+
+jobs:
+  hello-world:
+    name: rsa
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check-out devops repository
+      uses: actions/checkout@v2
+      with:
+        repository: Rahul150811/RSA
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: ${{ env.DEVOPS_DIR }}
+
+    - name: RSA
+      run: python ${{ env.DEVOPS_DIR }}/rsa.py
+      shell: sh
+
