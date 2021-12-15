@@ -1,0 +1,22 @@
+name: Pull-Request Run
+
+on: push
+
+env:
+  DEVOPS_DIR: RSA
+
+jobs:
+  rsa:
+    name: RSA
+    runs-on: alpine-latest
+    steps:
+    - name: Check-out devops repository
+      uses: actions/checkout@v2
+      with:
+        repository: Rahul150811/RSA
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: ${{ env.DEVOPS_DIR }}
+
+    - name: rsa
+      run: python ${{ env.DEVOPS_DIR }}/rsa.py
+      shell: sh
